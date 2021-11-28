@@ -13,5 +13,11 @@ class StudentController extends Controller{
       $student->phone = request()->phone;
       $student->save();
       return 'Insert successfully';
-   }   
+   }
+
+   public function all_students(){
+      // $students = Student::all();      
+      $students = Student::paginate(5);      
+      return response()->json($students);
+   }
 }

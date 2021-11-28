@@ -90,4 +90,14 @@
             ]
 </details>
 
+<details>
+   <summary>Part 3: Show All Students</summary>
+
+      1. Show all students in the same component which we use for create student.
+
+      2. Use laravel vue pagination package for fetching data and show with pagination.
+         i. [laravel vue pagination](https://github.com/gilbitron/laravel-vue-pagination)
+
+</details>
+
 [Tutorial Link](https://www.youtube.com/playlist?list=PLE_gxCZQDh4-55n7ZoY3vgXUla7IMnVY0)
