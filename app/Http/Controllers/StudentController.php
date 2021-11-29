@@ -19,4 +19,9 @@ class StudentController extends Controller{
       $students = Student::paginate(5);      
       return response()->json($students);
    }
+
+   public function edit_student($id){  
+      $student = Student::find($id);      
+      return response()->json($student);
+   }   
 }

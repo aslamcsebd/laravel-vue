@@ -107,4 +107,22 @@
          after saving data/student.
 </details>
 
+<details>
+   <summary>Part 5: Edit Student</summary>
+
+      1. Use bootstrap modal for edit student
+
+      2. Mew data for edit student
+
+      3. Create method for edit student
+
+      4. Create axios get method for fetching specific student data
+
+      5. Create  route in web.php
+
+      6. Create method in controller and return specefic student data
+
+      7. Show student data on edit form
+</details>
+
 [Tutorial Link](https://www.youtube.com/playlist?list=PLE_gxCZQDh4-55n7ZoY3vgXUla7IMnVY0)

@@ -1970,13 +1970,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       students: {},
       name: '',
       email: '',
-      phone: ''
+      phone: '',
+      editname: '',
+      editemail: '',
+      editphone: ''
     };
   },
   mounted: function mounted() {
@@ -2006,6 +2044,15 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('all_students?page=' + page).then(function (response) {
         console.log(response);
         _this2.students = response.data;
+      });
+    },
+    editStudent: function editStudent(id) {
+      var _this3 = this;
+
+      axios.get('edit_student/' + id).then(function (response) {
+        _this3.editname = response.data.name;
+        _this3.editemail = response.data.email;
+        _this3.editphone = response.data.phone;
       });
     }
   }
@@ -38393,7 +38440,46 @@ var render = function () {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(student.phone))]),
                         _vm._v(" "),
-                        _vm._m(1, true),
+                        _c("td", [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "btn-group",
+                              attrs: {
+                                role: "group",
+                                "aria-label": "Basic example",
+                              },
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-sm btn-primary",
+                                  attrs: {
+                                    type: "button",
+                                    "data-toggle": "modal",
+                                    "data-target": "#edit",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.editStudent(student.id)
+                                    },
+                                  },
+                                },
+                                [_vm._v("Edit")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-sm btn-danger",
+                                  attrs: { type: "button" },
+                                },
+                                [_vm._v("Delete")]
+                              ),
+                            ]
+                          ),
+                        ]),
                       ])
                     }),
                     0
@@ -38411,6 +38497,165 @@ var render = function () {
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "edit",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "name" },
+                      },
+                      [_vm._v("Name")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.editname,
+                          expression: "editname",
+                        },
+                      ],
+                      staticClass: "form-control col-sm-10",
+                      attrs: {
+                        type: "text",
+                        id: "name",
+                        "aria-describedby": "emailHelp",
+                        placeholder: "Name",
+                      },
+                      domProps: { value: _vm.editname },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.editname = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "email" },
+                      },
+                      [_vm._v("Email")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.editemail,
+                          expression: "editemail",
+                        },
+                      ],
+                      staticClass: "form-control col-sm-10",
+                      attrs: {
+                        type: "email",
+                        id: "email",
+                        "aria-describedby": "emailHelp",
+                        placeholder: "Email",
+                      },
+                      domProps: { value: _vm.editemail },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.editemail = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "phone" },
+                      },
+                      [_vm._v("Phone")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.editphone,
+                          expression: "editphone",
+                        },
+                      ],
+                      staticClass: "form-control col-sm-10",
+                      attrs: {
+                        type: "text",
+                        id: "phone",
+                        placeholder: "Phone",
+                      },
+                      domProps: { value: _vm.editphone },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.editphone = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary offset-2 col-sm-4",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.saveStudent.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [_vm._v("Add Now")]
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -38436,29 +38681,45 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
+    return _c("div", { staticClass: "modal-header" }, [
       _c(
-        "div",
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Modal title")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
         {
-          staticClass: "btn-group",
-          attrs: { role: "group", "aria-label": "Basic example" },
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close",
+          },
         },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm btn-success",
-              attrs: { type: "button" },
-            },
-            [_vm._v("Edit")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "btn btn-sm btn-danger", attrs: { type: "button" } },
-            [_vm._v("Delete")]
-          ),
-        ]
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" },
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Save changes")]
       ),
     ])
   },
