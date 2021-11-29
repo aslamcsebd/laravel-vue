@@ -100,4 +100,11 @@
 
 </details>
 
+<details>
+   <summary>Part 4: Show data without page refreshing</summary>
+
+      1. Call the function which we use for fetching data e.i getResults()
+         after saving data/student.
+</details>
+
 [Tutorial Link](https://www.youtube.com/playlist?list=PLE_gxCZQDh4-55n7ZoY3vgXUla7IMnVY0)

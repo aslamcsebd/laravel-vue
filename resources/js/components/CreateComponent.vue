@@ -3,7 +3,7 @@
       <div class="row justify-content-center">
          <div class="col-md-6">
             <div class="card">
-               <div class="card-header bg-primary text-light">Create new student</div>
+               <div class="card-header bg-primary text-light py-2">Create new student</div>
                <div class="card-body">
                   <form>
                      <div class="form-group row">
@@ -25,8 +25,8 @@
          </div>
          <div class="col-md-6">
             <div class="card">
-               <div class="card-header bg-success text-light">All students</div>
-               <div class="card-body">
+               <div class="card-header bg-success text-light py-2">All students</div>
+               <div class="card-body p-1">
                   <table class="table table-bordered table-striped">
                      <thead>
                       <tr>
@@ -80,7 +80,13 @@
                name : this.name,
                email : this.email,
                phone : this.phone,
-            }).then(response => console.log(response));
+            })
+            .then(response => {
+               this.name = '';
+               this.email = '';
+               this.phone = '';
+               this.getResults();
+            });
          },
          getResults(page = 1){
          axios.get('all_students?page=' + page)

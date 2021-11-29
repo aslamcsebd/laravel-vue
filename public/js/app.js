@@ -1984,22 +1984,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saveStudent: function saveStudent() {
+      var _this = this;
+
       // alert('text');
       axios.post('save_student', {
         name: this.name,
         email: this.email,
         phone: this.phone
       }).then(function (response) {
-        return console.log(response);
+        _this.name = '';
+        _this.email = '';
+        _this.phone = '';
+
+        _this.getResults();
       });
     },
     getResults: function getResults() {
-      var _this = this;
+      var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('all_students?page=' + page).then(function (response) {
         console.log(response);
-        _this.students = response.data;
+        _this2.students = response.data;
       });
     }
   }
@@ -38223,7 +38229,7 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header bg-primary text-light" }, [
+          _c("div", { staticClass: "card-header bg-primary text-light py-2" }, [
             _vm._v("Create new student"),
           ]),
           _vm._v(" "),
@@ -38359,13 +38365,13 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header bg-success text-light" }, [
+          _c("div", { staticClass: "card-header bg-success text-light py-2" }, [
             _vm._v("All students"),
           ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "card-body" },
+            { staticClass: "card-body p-1" },
             [
               _c(
                 "table",

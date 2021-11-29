@@ -15,8 +15,7 @@ class StudentController extends Controller{
       return 'Insert successfully';
    }
 
-   public function all_students(){
-      // $students = Student::all();      
+   public function all_students(){  
       $students = Student::paginate(5);      
       return response()->json($students);
    }
