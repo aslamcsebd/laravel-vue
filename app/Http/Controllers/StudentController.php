@@ -34,4 +34,11 @@ class StudentController extends Controller{
       return 'ok';
    }
 
+   public function delete_student($id){  
+      $student = Student::find($id)->delete();    
+      return 'ok';
+   }
+
+   
+
 }

@@ -12,3 +12,5 @@ Route::get('/all_students', 'StudentController@all_students');
 
 Route::get('/edit_student/{id}', 'StudentController@edit_student');
 Route::put('/update_student', 'StudentController@update_student');
+
+Route::delete('/delete_student/{id}', 'StudentController@delete_student');

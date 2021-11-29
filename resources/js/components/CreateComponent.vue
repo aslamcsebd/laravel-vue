@@ -18,7 +18,7 @@
                         <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                         <input type="text" v-model="phone" class="form-control col-sm-10" id="phone" placeholder="Phone">
                      </div>
-                     <button type="submit" @click.prevent="saveStudent" class="btn btn-primary offset-2 col-sm-4">Add Now</button>
+                     <button type="submit" @click.prevent="saveStudent" class="btn btn-primary offset-2 col-sm-auto">Add Now</button>
                   </form>
                </div>
             </div>
@@ -46,7 +46,7 @@
                         <td>
                            <div class="btn-group" role="group" aria-label="Basic example">
                              <button type="button" @click="editStudent(student.id)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit">Edit</button>
-                             <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                             <button type="button" @click="deleteStudent(student.id)" class="btn btn-sm btn-danger">Delete</button>
                            </div>
                         </td>
                       </tr>
@@ -91,14 +91,16 @@
             </div>
          </div>
       </div>
+
    </div>
 </template>
 
 <script>
    export default{
+      
       data(){
          return{
-            students : {},
+            students : {}, //pagination
             name : '',
             email : '',
             phone : '',
@@ -108,12 +110,14 @@
             editphone : ''
          }
       },
+
       mounted(){
          this.getResults();
       },
+
       methods : {
+
          saveStudent(){
-            // alert('text');
             axios.post('save_student', {
                name : this.name,
                email : this.email,
@@ -126,13 +130,14 @@
                this.getResults();
             });
          },
-         getResults(page = 1){
-         axios.get('all_students?page=' + page)
+
+         getResults(page = 1){  //pagination
+            axios.get('all_students?page=' + page)
             .then(response => {
-               console.log(response)
                this.students = response.data;
             });
          },
+
          editStudent(id){
             axios.get('edit_student/'+id)
             .then(response =>{
@@ -142,15 +147,23 @@
                this.editphone = response.data.phone;
             });
          },
+
          updateStudent(){
-            // alert(this.id);
-            axios.put('update_student', {
+            axios.put('update_student/', {
                id : this.id,
                name : this.editname,
                email : this.editemail,
                phone : this.editphone
             })
             .then(response=> {
+               this.getResults();
+            });
+         },
+
+         deleteStudent(id){
+            // alert(id);
+            axios.delete('delete_student/'+id)
+            .then(response => {
                this.getResults();
             });
          }

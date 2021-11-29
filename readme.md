@@ -143,4 +143,18 @@
       7. Show student data after update without page refresh
 </details>
 
+<details>
+   <summary>Part 7: Delete Student</summary>
+   
+      1. Create button for delete
+
+      2. Create method for delete that will fire on click event
+
+      3. Create axios delete and create route in web.php
+
+      4. Create method in controller and delete specefic student data
+
+      5. Show data after delete without page refresh
+</details>
+
 [Tutorial Link](https://www.youtube.com/playlist?list=PLE_gxCZQDh4-55n7ZoY3vgXUla7IMnVY0)

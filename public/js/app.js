@@ -2004,10 +2004,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       students: {},
+      //pagination
       name: '',
       email: '',
       phone: '',
@@ -2023,7 +2025,6 @@ __webpack_require__.r(__webpack_exports__);
     saveStudent: function saveStudent() {
       var _this = this;
 
-      // alert('text');
       axios.post('save_student', {
         name: this.name,
         email: this.email,
@@ -2040,8 +2041,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      //pagination
       axios.get('all_students?page=' + page).then(function (response) {
-        console.log(response);
         _this2.students = response.data;
       });
     },
@@ -2058,14 +2059,21 @@ __webpack_require__.r(__webpack_exports__);
     updateStudent: function updateStudent() {
       var _this4 = this;
 
-      // alert(this.id);
-      axios.put('update_student', {
+      axios.put('update_student/', {
         id: this.id,
         name: this.editname,
         email: this.editemail,
         phone: this.editphone
       }).then(function (response) {
         _this4.getResults();
+      });
+    },
+    deleteStudent: function deleteStudent(id) {
+      var _this5 = this;
+
+      // alert(id);
+      axios["delete"]('delete_student/' + id).then(function (response) {
+        _this5.getResults();
       });
     }
   }
@@ -38407,7 +38415,7 @@ var render = function () {
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-primary offset-2 col-sm-4",
+                  staticClass: "btn btn-primary offset-2 col-sm-auto",
                   attrs: { type: "submit" },
                   on: {
                     click: function ($event) {
@@ -38487,6 +38495,11 @@ var render = function () {
                                 {
                                   staticClass: "btn btn-sm btn-danger",
                                   attrs: { type: "button" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.deleteStudent(student.id)
+                                    },
+                                  },
                                 },
                                 [_vm._v("Delete")]
                               ),
