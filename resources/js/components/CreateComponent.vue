@@ -62,8 +62,8 @@
       <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+               <div class="modal-header bg-success py-2 text-light">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit student</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
@@ -82,12 +82,11 @@
                         <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                         <input type="text" v-model="editphone" class="form-control col-sm-10" id="phone" placeholder="Phone">
                      </div>
-                     <button type="submit" @click.prevent="saveStudent" class="btn btn-primary offset-2 col-sm-4">Add Now</button>
+                     <div class="btn-group float-right">
+                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" @click.prevent="updateStudent" data-dismiss="modal" class="btn btn-sm btn-primary">Update Now</button>
+                     </div>
                   </form>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
                </div>
             </div>
          </div>
@@ -137,9 +136,22 @@
          editStudent(id){
             axios.get('edit_student/'+id)
             .then(response =>{
+               this.id = response.data.id;
                this.editname = response.data.name;
                this.editemail = response.data.email;
                this.editphone = response.data.phone;
+            });
+         },
+         updateStudent(){
+            // alert(this.id);
+            axios.put('update_student', {
+               id : this.id,
+               name : this.editname,
+               email : this.editemail,
+               phone : this.editphone
+            })
+            .then(response=> {
+               this.getResults();
             });
          }
       }

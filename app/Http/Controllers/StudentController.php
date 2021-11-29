@@ -23,5 +23,15 @@ class StudentController extends Controller{
    public function edit_student($id){  
       $student = Student::find($id);      
       return response()->json($student);
-   }   
+   }
+
+   public function update_student(){  
+      $student = Student::find(request()->id);    
+      $student->name = request()->name;
+      $student->email = request()->email;
+      $student->phone = request()->phone;
+      $student->update();
+      return 'ok';
+   }
+
 }

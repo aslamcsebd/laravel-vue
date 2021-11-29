@@ -2004,7 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2050,9 +2049,23 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get('edit_student/' + id).then(function (response) {
+        _this3.id = response.data.id;
         _this3.editname = response.data.name;
         _this3.editemail = response.data.email;
         _this3.editphone = response.data.phone;
+      });
+    },
+    updateStudent: function updateStudent() {
+      var _this4 = this;
+
+      // alert(this.id);
+      axios.put('update_student', {
+        id: this.id,
+        name: this.editname,
+        email: this.editemail,
+        phone: this.editphone
+      }).then(function (response) {
+        _this4.getResults();
       });
     }
   }
@@ -38633,24 +38646,33 @@ var render = function () {
                     }),
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary offset-2 col-sm-4",
-                      attrs: { type: "submit" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.saveStudent.apply(null, arguments)
+                  _c("div", { staticClass: "btn-group float-right" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                      },
+                      [_vm._v("Close")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-primary",
+                        attrs: { type: "submit", "data-dismiss": "modal" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.updateStudent.apply(null, arguments)
+                          },
                         },
                       },
-                    },
-                    [_vm._v("Add Now")]
-                  ),
+                      [_vm._v("Update Now")]
+                    ),
+                  ]),
                 ]),
               ]),
-              _vm._v(" "),
-              _vm._m(2),
             ]),
           ]
         ),
@@ -38681,47 +38703,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Modal title")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close",
+    return _c(
+      "div",
+      { staticClass: "modal-header bg-success py-2 text-light" },
+      [
+        _c(
+          "h5",
+          { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+          [_vm._v("Edit student")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "close",
+            attrs: {
+              type: "button",
+              "data-dismiss": "modal",
+              "aria-label": "Close",
+            },
           },
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" },
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
-      ),
-    ])
+          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+        ),
+      ]
+    )
   },
 ]
 render._withStripped = true

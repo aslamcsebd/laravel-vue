@@ -125,4 +125,22 @@
       7. Show student data on edit form
 </details>
 
+<details>
+   <summary>Part 6: Update Student</summary>
+
+      1. Create a method for update that will fire on click event
+
+      2. Set id in data that we can use on update specific student data
+
+      3. Create axios put and send request
+
+      4. Create route in web.php
+
+      5. Create method in controller and update student data
+
+      6. Hide modal after submit data
+
+      7. Show student data after update without page refresh
+</details>
+
 [Tutorial Link](https://www.youtube.com/playlist?list=PLE_gxCZQDh4-55n7ZoY3vgXUla7IMnVY0)
